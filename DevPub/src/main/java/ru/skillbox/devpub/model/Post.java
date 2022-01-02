@@ -1,16 +1,13 @@
 package ru.skillbox.devpub.model;
 
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
-@NoArgsConstructor
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "posts")
 public class Post {
@@ -45,5 +42,17 @@ public class Post {
     @Column(name = "view_count", nullable = false)
     private Integer viewCount;
 
+    @OneToMany(mappedBy = "postId",cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+    private List<PostVotes> postVotes;
+
+    @ManyToMany
+    @JoinTable(
+            name = "tag2post",
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private List<Tag> tags;
+
+    @OneToMany(mappedBy = "postId")
+    private List<PostComment> postComments;
 
 }

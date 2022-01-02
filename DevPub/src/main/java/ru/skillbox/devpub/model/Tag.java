@@ -1,15 +1,11 @@
 package ru.skillbox.devpub.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
-@NoArgsConstructor
-@Getter
-@Setter
-
+@Data
 @Entity
 @Table(name = "tags")
 public class Tag {
@@ -20,6 +16,13 @@ public class Tag {
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    @ManyToMany
+    @JoinTable(
+            name = "tag2post",
+            joinColumns = @JoinColumn(name = "tag_id"),
+            inverseJoinColumns = @JoinColumn(name = "post_id"))
+    private List<Post> posts;
 
 
 }

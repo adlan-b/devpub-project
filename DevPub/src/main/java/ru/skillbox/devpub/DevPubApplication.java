@@ -9,7 +9,6 @@ public class DevPubApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DevPubApplication.class, args);
-
     }
 
 }

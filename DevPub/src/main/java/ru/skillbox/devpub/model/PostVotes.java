@@ -1,16 +1,11 @@
 package ru.skillbox.devpub.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@NoArgsConstructor
-@Getter
-@Setter
-
+@Data
 @Entity
 @Table(name = "post_votes")
 public class PostVotes {
@@ -19,11 +14,13 @@ public class PostVotes {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "name_id", nullable = false)
-    private Integer userId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User userId;
 
-    @Column(name = "post_id", nullable = false)
-    private Integer postId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "post_id")
+    private Post postId;
 
     @Column(name = "time", nullable = false)
     private LocalDateTime time;

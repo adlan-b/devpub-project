@@ -1,8 +1,6 @@
 package ru.skillbox.devpub.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -10,9 +8,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "users")
 public class User {
@@ -46,6 +42,9 @@ public class User {
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
     private List<Post> posts;
 
+    @OneToMany(mappedBy = "userId", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+    private List<PostVotes> postVotes;
+
     public void addPostToAuthor(Post post) {
         if (posts == null) {
             posts = new ArrayList<>();
@@ -53,5 +52,8 @@ public class User {
         posts.add(post);
         post.setUserId(this);
     }
+
+    @OneToMany(mappedBy = "userId")
+    private List<PostComment> postComments;
 
 }

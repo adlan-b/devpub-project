@@ -1,15 +1,10 @@
 package ru.skillbox.devpub.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDateTime;
-@NoArgsConstructor
-@Setter
-@Getter
 
+@Data
 @Entity
 @Table(name = "post_comments")
 public class PostComment {
@@ -21,11 +16,14 @@ public class PostComment {
     @Column(name = "parent_id")
     private Integer parentId;
 
-    @Column(name = "post_id", nullable = false)
-    private Integer postId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "post_id")
+    private Post postId;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     @Column(name = "user_id", nullable = false)
-    private Integer userId;
+    private User userId;
 
     @Column(name = "time", nullable = false)
     private LocalDateTime time;
