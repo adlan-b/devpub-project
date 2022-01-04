@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    name: root
+    password: test
+    url: jdbc:mysql://root@:3306/dev_pub?allowPublicKeyRetrieval=true&useSSL=false
+
+  jpa:
+    hibernate.ddl-auto: create
+    generate-ddl: false
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
