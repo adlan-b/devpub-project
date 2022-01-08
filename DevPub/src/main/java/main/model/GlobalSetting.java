@@ -1,29 +1,30 @@
-package ru.skillbox.devpub.model;
+package main.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+
 @NoArgsConstructor
 @Getter
 @Setter
 
 @Entity
-@Table(name = "captcha_codes")
-public class CaptchaCode {
+@Table(name = "global_settings")
+public class GlobalSetting {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "time", nullable = false)
-    private LocalDateTime time;
-
-
     @Column(name = "code", nullable = false)
     private String code;
 
-    @Column(name = "secret_code", nullable = false)
-    private String secretCode;
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "value", nullable = false)
+    private String value;
+
+
 }
