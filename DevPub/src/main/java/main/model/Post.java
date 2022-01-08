@@ -1,11 +1,11 @@
-package ru.skillbox.devpub.model;
-
-
-import lombok.Data;
+package main.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import lombok.Data;
+
 
 @Data
 @Entity

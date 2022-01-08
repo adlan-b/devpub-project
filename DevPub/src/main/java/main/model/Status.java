@@ -1,4 +1,4 @@
-package ru.skillbox.devpub.model;
+package main.model;
 
 public enum Status {
     NEW,
