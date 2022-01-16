@@ -22,7 +22,6 @@ public class PostComment {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    @Column(name = "user_id", nullable = false)
     private User userId;
 
     @Column(name = "time", nullable = false)
